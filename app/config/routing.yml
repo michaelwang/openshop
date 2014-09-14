@@ -1,0 +1,5 @@
+australopithecus_menu:
+    resource: "@AustralopithecusMenuBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

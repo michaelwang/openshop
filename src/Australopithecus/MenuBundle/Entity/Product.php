@@ -5,12 +5,12 @@ namespace Australopithecus\MenuBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Menu
+ * Product
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Australopithecus\MenuBundle\Entity\MenuRepository")
+ * @ORM\Entity(repositoryClass="Australopithecus\MenuBundle\Entity\ProductRepository")
  */
-class Menu
+class Product
 {
     /**
      * @var integer
@@ -24,48 +24,23 @@ class Menu
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=200)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="des", type="string", length=200)
+     * @ORM\Column(name="des", type="text")
      */
     private $des;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="link", type="string", length=100)
+     * @ORM\Column(name="category", type="string", length=50)
      */
-    private $link;
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Menu
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * Get Link
-     *
-     * @return string 
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-
+    private $category;
 
 
     /**
@@ -82,7 +57,7 @@ class Menu
      * Set name
      *
      * @param string $name
-     * @return Menu
+     * @return Product
      */
     public function setName($name)
     {
@@ -105,7 +80,7 @@ class Menu
      * Set des
      *
      * @param string $des
-     * @return Menu
+     * @return Product
      */
     public function setDes($des)
     {
@@ -122,5 +97,28 @@ class Menu
     public function getDes()
     {
         return $this->des;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return Product
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

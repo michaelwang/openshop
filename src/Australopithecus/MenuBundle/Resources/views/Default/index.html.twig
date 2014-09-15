@@ -19,7 +19,20 @@
     <![endif]-->
   </head>
   <body>
-    <h1>你好，世界！</h1>
+    <nav class="navbar navbar-default" role="navigation">
+         <div class="container-fluid">
+             <div class="navbar-header">
+                  <a class="navbar-brand" href="#">EShop</a>
+             </div>
+             <div >
+               <ul class="nav navbar-nav">
+                  {% for entity in entities %}
+                    <li><a href="{{entity.link}}">{{ entity.name }}</a></li>
+                  {% endfor %}         
+                </ul>
+             </div>
+         </div>
+    </nav>
 
   </body>
 </html>

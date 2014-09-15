@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MenuType extends AbstractType
+class ProductType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -17,7 +17,7 @@ class MenuType extends AbstractType
         $builder
             ->add('name')
             ->add('des')
-            ->add('link')
+            ->add('category')
         ;
     }
     
@@ -27,7 +27,7 @@ class MenuType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Australopithecus\MenuBundle\Entity\Menu'
+            'data_class' => 'Australopithecus\MenuBundle\Entity\Product'
         ));
     }
 
@@ -36,6 +36,6 @@ class MenuType extends AbstractType
      */
     public function getName()
     {
-        return 'australopithecus_menubundle_menu';
+        return 'australopithecus_menubundle_product';
     }
 }

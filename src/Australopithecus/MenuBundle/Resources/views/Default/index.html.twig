@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>EShop</title>
 
     <!-- Bootstrap -->
     {% block stylesheets %}
@@ -26,13 +26,35 @@
              </div>
              <div >
                <ul class="nav navbar-nav">
-                  {% for entity in entities %}
+                  {% for entity in menuEntities %}
                     <li><a href="{{entity.link}}">{{ entity.name }}</a></li>
                   {% endfor %}         
                 </ul>
              </div>
          </div>
     </nav>
-
+    <table>
+        {% for entity in productEntities %}
+            <tr>
+                <td><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>
+                  {% for picture in entity.pictures %}
+                    {{ picture.path }}
+                  {% endfor %}
+                </td>
+                <td>
+                  <ul>
+                    <li>
+                        <a href="{{ path('product_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('product_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                  </ul>
+                </td>
+            </tr>
+        {% endfor %}
+     </table>
   </body>
 </html>

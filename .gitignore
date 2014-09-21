@@ -1,0 +1,8 @@
+app/cache/*
+app/cache/dev/*
+app/logs/dev.log
+web/bundles/acmedemo/
+web/bundles/framework/
+web/bundles/sensiodistribution/
+TAGS
+vendor/TAGS

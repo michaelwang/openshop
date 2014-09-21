@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="ProductPictures",mappedBy="product")
+     */
+    private $pictures;
+
     /**
      * @var integer
      *
@@ -37,8 +44,8 @@ class Product
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
@@ -65,6 +72,7 @@ class Product
 
         return $this;
     }
+
 
     /**
      * Get name
@@ -99,13 +107,60 @@ class Product
         return $this->des;
     }
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Australopithecus\MenuBundle\Entity\ProductPictures $pictures
+     * @return Product
+     */
+    public function addPicture(\Australopithecus\MenuBundle\Entity\ProductPictures $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Australopithecus\MenuBundle\Entity\ProductPictures $pictures
+     */
+    public function removePicture(\Australopithecus\MenuBundle\Entity\ProductPictures $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * Set category
      *
-     * @param string $category
+     * @param \Australopithecus\MenuBundle\Entity\Category $category
      * @return Product
      */
-    public function setCategory($category)
+    public function setCategory(\Australopithecus\MenuBundle\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -115,7 +170,7 @@ class Product
     /**
      * Get category
      *
-     * @return string 
+     * @return \Australopithecus\MenuBundle\Entity\Category 
      */
     public function getCategory()
     {

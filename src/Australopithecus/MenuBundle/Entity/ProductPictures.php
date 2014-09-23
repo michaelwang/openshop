@@ -3,12 +3,16 @@
 namespace Australopithecus\MenuBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * ProductPictures
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Australopithecus\MenuBundle\Entity\ProductPicturesRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class ProductPictures
 {
@@ -35,6 +39,42 @@ class ProductPictures
      */
     private $path;
 
+    private $temp;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        if (isset($this->path))
+        {
+            $this->temp = $this->path;
+            $this->path = null;
+        }else{
+            $this->path = "initial";
+        }        
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if(null !== $this->getFile())
+        {
+            $filename = sha1(uniqid(mt_rand(),true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+    public function getFile(UploadedFile $file = null)
+    {
+        return $this->file;
+    }
 
     /**
      * Get id
@@ -113,5 +153,54 @@ class ProductPictures
     public function getProduct()
     {
         return $this->product;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null == $this->path
+            ? null : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/documents';
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null == $this->getFile())
+        {
+            return;
+        }
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->path
+        );
+        if(isset($this->temp))
+        {
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            $this->temp = null;
+        }        
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if($file = $this->getAbsolutePath())
+        {
+            unlink($file);
+        }
     }
 }

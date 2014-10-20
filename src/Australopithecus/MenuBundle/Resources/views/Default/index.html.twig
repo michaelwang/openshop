@@ -33,28 +33,13 @@
              </div>
          </div>
     </nav>
-    <table>
-        {% for entity in productEntities %}
-            <tr>
-                <td><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>
-                  {% for picture in entity.pictures %}
-                    {{ picture.path }}
-                  {% endfor %}
-                </td>
-                <td>
-                  <ul>
-                    <li>
-                        <a href="{{ path('product_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('product_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                  </ul>
-                </td>
-            </tr>
-        {% endfor %}
-     </table>
+    {% for entity in productEntities %}
+      <div class="row">
+        <div class="col-md-12">
+            <img src="{{ asset('uploads/documents/') }}{{ entity.pictures[0].path }}" />
+        </div>
+      </div>
+     {% endfor %}
+
   </body>
 </html>

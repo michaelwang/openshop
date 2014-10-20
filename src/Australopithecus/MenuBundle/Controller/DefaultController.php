@@ -14,15 +14,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        /*
         $em = $this->getDoctrine()->getManager();
         $menuEntities = $em->getRepository('AustralopithecusMenuBundle:Menu')->findAll();
         $productEntities = $em->getRepository('AustralopithecusMenuBundle:Product')->findAll(); 
         return array(
             'menuEntities' => $menuEntities,
             'productEntities' => $productEntities
-            ); **/
-        return array();
-  
+        ); 
     }
 }

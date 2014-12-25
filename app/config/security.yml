@@ -18,6 +18,13 @@ security:
                 csrf_provider: form.csrf_provider
             logout:       true
             anonymous:    true
+            oauth:
+              resource_owners:
+                 custom: "/login/check-custom" # 需要在routing.yml中定义该route
+              login_path:        /login
+              failure_path:      /login
+              oauth_user_provider:
+                    service: sylius.user
 
     access_control:
         - { path: ^/$, role: ROLE_USER }

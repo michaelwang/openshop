@@ -11,3 +11,7 @@ services:
         scope: request # needed as we have the request as a dependency here
         tags:
             - { name: knp_menu.menu, alias: main }
+
+    sylius.user:
+         class: Australopithecus\MenuBundle\Entity\Member
+         arguments: ["@fos_user.user_manager"]

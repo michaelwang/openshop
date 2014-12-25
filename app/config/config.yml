@@ -57,7 +57,7 @@ doctrine:
         charset:  UTF8
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        # path:     "%database_path%"
+        path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -75,3 +75,21 @@ fos_user:
    db_driver: orm
    firewall_name: main
    user_class: Australopithecus\MenuBundle\Entity\Member
+
+hwi_oauth:
+      firewall_name: main
+      resource_owners:
+           custom:
+              type:                oauth2
+              client_id:      5_3h50vwsgde4gok04448gcgs88gokw8g0o0wwook0so88w8gwkc
+              client_secret:  1v2h1b7qa8kk4k0ks4k8woko0ss4w0ww0o4kg4s0844cc4wsww
+              access_token_url:    http://localhost:8002/oauth/v2/token
+              authorization_url:   http://localhost:8002/oauth/v2/auth
+              infos_url:           http://localhost:8002/user/
+#              scope:               "read"
+              user_response_class: HWI\Bundle\OAuthBundle\OAuth\Response\PathUserResponse
+              # user_response_class: Australopithecus\MenuBundle\Custom\CustomPathUserResponse
+              paths:
+                   identifier: identifier
+                   nickname:   nickname
+                   realname:   realname

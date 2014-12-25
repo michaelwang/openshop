@@ -1,17 +1,18 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_driver: pdo_mysql
+    database_driver: pdo_sqlite
     database_host: 127.0.0.1
-    database_port: 3306
+    database_port: null
     database_name: shop
     database_user: root
-    database_password: 111
+    database_password: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: null
+    mailer_user: admin@aa.com
     mailer_password: null
-    locale: en
+    locale: zh_CN
     secret: ThisTokenIsNotSoSecretChangeIt
     debug_toolbar: true
     debug_redirects: false
     use_assetic_controller: true
+    database_path: '%kernel.root_dir%/data/openshop.db3'

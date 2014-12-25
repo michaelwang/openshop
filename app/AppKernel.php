@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Australopithecus\MenuBundle\AustralopithecusMenuBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

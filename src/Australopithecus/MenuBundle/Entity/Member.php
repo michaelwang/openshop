@@ -57,9 +57,10 @@ class Member extends BaseUser implements OAuthAwareUserProviderInterface
 
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        $username = $response->getUsername();
-        var_dump($response);exit;
-#        $response = $response->getResponse();
+#        $username = $response->getUsername();
+#        var_dump($username);exit;
+        $username = $response->getResponse()["username"];
+        var_dump($username);
         $user = $this->userManager->findUserBy(array('username' => $username));
         //when the user is registrating
         if (null === $user) {

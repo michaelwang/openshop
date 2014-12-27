@@ -81,11 +81,11 @@ hwi_oauth:
       resource_owners:
            custom:
               type:                oauth2
-              client_id:      5_3h50vwsgde4gok04448gcgs88gokw8g0o0wwook0so88w8gwkc
-              client_secret:  1v2h1b7qa8kk4k0ks4k8woko0ss4w0ww0o4kg4s0844cc4wsww
+              client_id:           5_3h50vwsgde4gok04448gcgs88gokw8g0o0wwook0so88w8gwkc
+              client_secret:       1v2h1b7qa8kk4k0ks4k8woko0ss4w0ww0o4kg4s0844cc4wsww
               access_token_url:    http://localhost:8002/oauth/v2/token
               authorization_url:   http://localhost:8002/oauth/v2/auth
-              infos_url:           http://localhost:8002/user/
+              infos_url:           http://localhost:8002/api/user
 #              scope:               "read"
               user_response_class: HWI\Bundle\OAuthBundle\OAuth\Response\PathUserResponse
               # user_response_class: Australopithecus\MenuBundle\Custom\CustomPathUserResponse
